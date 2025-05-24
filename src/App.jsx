@@ -90,6 +90,7 @@ const App = () => {
   ]);
   const [isemptyTeam, setEmptyTeam] = useState(true);
   const [totalStrength, setStrength] = useState(0);
+  const [totalAgility, setAgility] = useState(0);
 
   // Event Handler Functions
   const handleAddFighter = (addZombie) => {
@@ -126,6 +127,13 @@ const App = () => {
         .map((x) => x.strength)
         .reduce((accumulator, current) => accumulator + current, 0);
       setStrength(newStrength);
+
+      const teamAgility = newteam.map((x) => x.agility);
+      let newAgility;
+      newAgility = newteam
+        .map((x) => x.agility)
+        .reduce((accumulator, current) => accumulator + current, 0);
+      setAgility(newAgility);
     }
   };
 
@@ -136,6 +144,9 @@ const App = () => {
       <h2>Money: {money}</h2>
       <div>
         <h2>Team Strength: {totalStrength}</h2>
+      </div>
+      <div>
+        <h2>Team Agility: {totalAgility}</h2>
       </div>
       <div>
         <h2>Team</h2>
