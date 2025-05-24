@@ -5,7 +5,7 @@ import "./App.css";
 const App = () => {
   const [team, setTeam] = useState([]);
   const [money, setMoney] = useState(100);
-  const [zombiesFighters, setZombieFighters] = useState([
+  const [zombieFighters, setZombieFighters] = useState([
     {
       id: 1,
       name: "Survivor",
@@ -90,14 +90,26 @@ const App = () => {
   return (
     <>
       <ul>
-        <li>
+        {/* <li>
           <img src="https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/0c2d6b.png" />
-          <p>Name</p>
+          <p>
+          Name {[setZombieFighters]}
+          </p>
           <p>Price</p>
           <p>Strength</p>
           <p>Agility</p>
           <button>Add</button>
-        </li>
+        </li> */}
+        {zombieFighters.map((zombie) => (
+          <li>
+            <img src={zombie.img} />
+            <h3>{zombie.name}</h3>
+            <p>Price: {zombie.price}</p>
+            <p>Strength: {zombie.strength}</p>
+            <p>Agility: {zombie.agility}</p>
+            <button>Add</button>
+          </li>
+        ))}
       </ul>
     </>
   );
