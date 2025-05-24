@@ -101,15 +101,9 @@ const App = () => {
     // Since we added the new zombie to the start of the new array [newteam], we use the index 0 to identify it's key
     // We find its index in the [zombieFighters] array and filter it out
     let addZombieId = newteam[0].id;
-    // console.log(filteredId);
     const newzombieFighters = zombieFighters.filter((x) => x.id != addZombieId);
     setZombieFighters(newzombieFighters);
     console.log(newzombieFighters);
-
-    // let addZombieIndex = zombieFighters.map((x) => x.id).indexOf(addZombieId);
-
-    // const newzombieFighters = [...zombieFighters];
-    // setZombieFighters(newzombieFighters);
   };
 
   // Main JSX
