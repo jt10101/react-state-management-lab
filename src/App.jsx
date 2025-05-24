@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./App.css";
 
 const App = () => {
+  // States
   const [team, setTeam] = useState([]);
   const [money, setMoney] = useState(100);
   const [zombieFighters, setZombieFighters] = useState([
@@ -87,10 +88,32 @@ const App = () => {
       img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/e41f26.png",
     },
   ]);
+
+  // Event Handler Functions
+  const handleAddFighter = (addZombie) => {
+    // Spread operator to create new array becuase of .push function
+    // we are appending to the new array because it is different from the other displayed array
+    const newteam = [...team, addZombie];
+    setTeam(newteam);
+    console.log(newteam);
+  };
+
+  // Main JSX
   return (
     <>
       <h1>Zombie Fighters</h1>
       <h2>Money: {money}</h2>
+      <ul>
+        {team.map((zombie) => (
+          <li key={zombie.id}>
+            <img src={zombie.img} />
+            <h3>{zombie.name}</h3>
+            <p>Price: {zombie.price}</p>
+            <p>Strength: {zombie.strength}</p>
+            <p>Agility: {zombie.agility}</p>
+          </li>
+        ))}
+      </ul>
       <ul>
         {/* <li>
           <img src="https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/0c2d6b.png" />
@@ -103,13 +126,19 @@ const App = () => {
           <button>Add</button>
         </li> */}
         {zombieFighters.map((zombie) => (
-          <li>
+          <li key={zombie.id}>
             <img src={zombie.img} />
             <h3>{zombie.name}</h3>
             <p>Price: {zombie.price}</p>
             <p>Strength: {zombie.strength}</p>
             <p>Agility: {zombie.agility}</p>
-            <button>Add</button>
+            <button
+              onClick={() =>
+                handleAddFighter({ name: "testname", img: "testimg" })
+              }
+            >
+              Add
+            </button>
           </li>
         ))}
       </ul>
