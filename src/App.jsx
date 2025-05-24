@@ -88,12 +88,15 @@ const App = () => {
       img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/e41f26.png",
     },
   ]);
+  const [isemptyTeam, setEmptyTeam] = useState(true);
 
   // Event Handler Functions
   const handleAddFighter = (addZombie) => {
     if (money < addZombie.price) {
       console.log("Not enough money!");
     } else {
+      // We set is empty team to false when any add button is first clicked
+      setEmptyTeam(false);
       // Spread operator to create new array becuase of .push function
       // we are appending to the new array because it is different from the other displayed array
       const newteam = [addZombie, ...team];
@@ -123,7 +126,9 @@ const App = () => {
       <h2>Money: {money}</h2>
       <div>
         <h2>Team</h2>
-        <p>Pick some team members!</p>
+        <p id={isemptyTeam ? "emptyteam" : "occupiedteam"}>
+          Pick some team members!
+        </p>
         <ul>
           {team.map((zombie) => (
             <li key={zombie.id}>
