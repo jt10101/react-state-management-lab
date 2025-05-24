@@ -125,20 +125,14 @@ const App = () => {
           <p>Agility</p>
           <button>Add</button>
         </li> */}
-        {zombieFighters.map((zombie) => (
-          <li key={zombie.id}>
+        {zombieFighters.map((zombie, id) => (
+          <li key={id}>
             <img src={zombie.img} />
             <h3>{zombie.name}</h3>
             <p>Price: {zombie.price}</p>
             <p>Strength: {zombie.strength}</p>
             <p>Agility: {zombie.agility}</p>
-            <button
-              onClick={() =>
-                handleAddFighter({ name: "testname", img: "testimg" })
-              }
-            >
-              Add
-            </button>
+            <button onClick={() => handleAddFighter({ ...zombie })}>Add</button>
           </li>
         ))}
       </ul>
