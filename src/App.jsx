@@ -150,7 +150,27 @@ const App = () => {
     let returnZombieId = returnZombie[0].id;
     const newReturnTeam = team.filter((x) => x.id != returnZombieId);
     setTeam(newReturnTeam);
+
+    // Add money back when removing members from team
+    const refundMoney = money + removeZombie.price;
+    setMoney(refundMoney);
+
+    // Refunding attributes
+    const teamStrength = newReturnTeam.map((x) => x.strength);
+    let newReturnStrength;
+    newReturnStrength = newReturnTeam
+      .map((x) => x.strength)
+      .reduce((accumulator, current) => accumulator + current, 0);
+    setStrength(newReturnStrength);
+
+    const teamAgility = newReturnTeam.map((x) => x.agility);
+    let newReturnAgility;
+    newReturnAgility = newReturnTeam
+      .map((x) => x.agility)
+      .reduce((accumulator, current) => accumulator + current, 0);
+    setAgility(newReturnAgility);
   };
+
   // Main JSX
   return (
     <>
