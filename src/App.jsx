@@ -103,7 +103,20 @@ const App = () => {
     let addZombieId = newteam[0].id;
     const newzombieFighters = zombieFighters.filter((x) => x.id != addZombieId);
     setZombieFighters(newzombieFighters);
-    console.log(newzombieFighters);
+    // console.log(newzombieFighters);
+
+    // Two things I need to do here:
+    // 1. Check if I have sufficient balance, if insufficient console log a message that says insufficient balance
+    let addZombiePrice = newteam[0].price;
+    if (money < addZombiePrice) {
+      console.log("Not enough money!");
+    }
+    // 2. If sufficient, I will reduce balance from my money
+    else {
+      const newMoney = money - addZombiePrice;
+      setMoney(newMoney);
+      console.log("enough money");
+    }
   };
 
   // Main JSX
@@ -123,16 +136,6 @@ const App = () => {
         ))}
       </ul>
       <ul>
-        {/* <li>
-          <img src="https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/0c2d6b.png" />
-          <p>
-          Name {[setZombieFighters]}
-          </p>
-          <p>Price</p>
-          <p>Strength</p>
-          <p>Agility</p>
-          <button>Add</button>
-        </li> */}
         {zombieFighters.map((zombie, id) => (
           <li key={id}>
             <img src={zombie.img} />
