@@ -89,6 +89,7 @@ const App = () => {
     },
   ]);
   const [isemptyTeam, setEmptyTeam] = useState(true);
+  const [totalStrength, setStrength] = useState(0);
 
   // Event Handler Functions
   const handleAddFighter = (addZombie) => {
@@ -97,6 +98,7 @@ const App = () => {
     } else {
       // We set is empty team to false when any add button is first clicked
       setEmptyTeam(false);
+
       // Spread operator to create new array becuase of .push function
       // we are appending to the new array because it is different from the other displayed array
       const newteam = [addZombie, ...team];
@@ -111,11 +113,19 @@ const App = () => {
         (x) => x.id != addZombieId
       );
       setZombieFighters(newzombieFighters);
-      // console.log(newzombieFighters);
 
+      // Caclulation of new money balance after minusing  price of  zombie
       const newMoney = money - addZombie.price;
       setMoney(newMoney);
       console.log("enough money"); // check for else condition
+
+      // Adding attributes of new zombie
+      const teamStrength = newteam.map((x) => x.strength);
+      let newStrength;
+      newStrength = newteam
+        .map((x) => x.strength)
+        .reduce((accumulator, current) => accumulator + current, 0);
+      setStrength(newStrength);
     }
   };
 
@@ -124,6 +134,9 @@ const App = () => {
     <>
       <h1>Zombie Fighters</h1>
       <h2>Money: {money}</h2>
+      <div>
+        <h2>Team Strength: {totalStrength}</h2>
+      </div>
       <div>
         <h2>Team</h2>
         <p id={isemptyTeam ? "emptyteam" : "occupiedteam"}>
