@@ -91,29 +91,26 @@ const App = () => {
 
   // Event Handler Functions
   const handleAddFighter = (addZombie) => {
-    // Spread operator to create new array becuase of .push function
-    // we are appending to the new array because it is different from the other displayed array
-    const newteam = [addZombie, ...team];
-    setTeam(newteam);
-    // console.log(newteam);
-
-    // New Array to remove selected zombie fighter
-    // Since we added the new zombie to the start of the new array [newteam], we use the index 0 to identify it's key
-    // We find its index in the [zombieFighters] array and filter it out
-    let addZombieId = newteam[0].id;
-    const newzombieFighters = zombieFighters.filter((x) => x.id != addZombieId);
-    setZombieFighters(newzombieFighters);
-    // console.log(newzombieFighters);
-
-    // Two things I need to do here:
-    // 1. Check if I have sufficient balance, if insufficient console log a message that says insufficient balance
-    let addZombiePrice = newteam[0].price;
-    if (money < addZombiePrice) {
+    if (money < addZombie.price) {
       console.log("Not enough money!");
-    }
-    // 2. If sufficient, I will reduce balance from my money
-    else {
-      const newMoney = money - addZombiePrice;
+    } else {
+      // Spread operator to create new array becuase of .push function
+      // we are appending to the new array because it is different from the other displayed array
+      const newteam = [addZombie, ...team];
+      setTeam(newteam);
+      // console.log(newteam);
+
+      // New Array to remove selected zombie fighter
+      // Since we added the new zombie to the start of the new array [newteam], we use the index 0 to identify it's key
+      // We find its index in the [zombieFighters] array and filter it out
+      let addZombieId = newteam[0].id;
+      const newzombieFighters = zombieFighters.filter(
+        (x) => x.id != addZombieId
+      );
+      setZombieFighters(newzombieFighters);
+      // console.log(newzombieFighters);
+
+      const newMoney = money - addZombie.price;
       setMoney(newMoney);
       console.log("enough money");
     }
