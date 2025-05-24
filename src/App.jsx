@@ -97,9 +97,10 @@ const App = () => {
     if (money < addZombie.price) {
       console.log("Not enough money!");
     } else {
-      // We set is empty team to false when any add button is first clicked
-      setEmptyTeam(false);
-
+      // Check if team array is lesser than 0, if true, remove the empty team class
+      if (team.length < 1) {
+        setEmptyTeam(false);
+      }
       // Spread operator to create new array becuase of .push function
       // we are appending to the new array because it is different from the other displayed array
       const newteam = [addZombie, ...team];
@@ -138,6 +139,9 @@ const App = () => {
   };
 
   const handleRemoveFighter = (removeZombie) => {
+    if (team.length <= 1) {
+      setEmptyTeam(true);
+    }
     // First, I want to add the zombie back to the fighter array
     const returnZombie = [removeZombie, ...zombieFighters];
     setZombieFighters(returnZombie);
