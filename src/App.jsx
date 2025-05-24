@@ -139,8 +139,13 @@ const App = () => {
 
   const handleRemoveFighter = (removeZombie) => {
     // First, I want to add the zombie back to the fighter array
-    const returnZombie = [...zombieFighters, removeZombie];
+    const returnZombie = [removeZombie, ...zombieFighters];
     setZombieFighters(returnZombie);
+
+    // Remove zombie from team array
+    let returnZombieId = returnZombie[0].id;
+    const newReturnTeam = team.filter((x) => x.id != returnZombieId);
+    setTeam(newReturnTeam);
   };
   // Main JSX
   return (
