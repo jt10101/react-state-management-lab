@@ -137,6 +137,11 @@ const App = () => {
     }
   };
 
+  const handleRemoveFighter = (removeZombie) => {
+    // First, I want to add the zombie back to the fighter array
+    const returnZombie = [...zombieFighters, removeZombie];
+    setZombieFighters(returnZombie);
+  };
   // Main JSX
   return (
     <>
@@ -154,14 +159,16 @@ const App = () => {
           Pick some team members!
         </p>
         <ul>
-          {team.map((zombie) => (
+          {team.map((zombie, id) => (
             <li key={zombie.id}>
               <img src={zombie.img} />
               <h3>{zombie.name}</h3>
               <p>Price: {zombie.price}</p>
               <p>Strength: {zombie.strength}</p>
               <p>Agility: {zombie.agility}</p>
-              <button>Remove</button>
+              <button onClick={() => handleRemoveFighter({ ...zombie })}>
+                Remove
+              </button>
             </li>
           ))}
         </ul>
