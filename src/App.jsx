@@ -93,9 +93,23 @@ const App = () => {
   const handleAddFighter = (addZombie) => {
     // Spread operator to create new array becuase of .push function
     // we are appending to the new array because it is different from the other displayed array
-    const newteam = [...team, addZombie];
+    const newteam = [addZombie, ...team];
     setTeam(newteam);
-    console.log(newteam);
+    // console.log(newteam);
+
+    // New Array to remove selected zombie fighter
+    // Since we added the new zombie to the start of the new array [newteam], we use the index 0 to identify it's key
+    // We find its index in the [zombieFighters] array and filter it out
+    let addZombieId = newteam[0].id;
+    // console.log(filteredId);
+    const newzombieFighters = zombieFighters.filter((x) => x.id != addZombieId);
+    setZombieFighters(newzombieFighters);
+    console.log(newzombieFighters);
+
+    // let addZombieIndex = zombieFighters.map((x) => x.id).indexOf(addZombieId);
+
+    // const newzombieFighters = [...zombieFighters];
+    // setZombieFighters(newzombieFighters);
   };
 
   // Main JSX
