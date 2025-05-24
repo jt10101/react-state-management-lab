@@ -161,6 +161,7 @@ const App = () => {
               <p>Price: {zombie.price}</p>
               <p>Strength: {zombie.strength}</p>
               <p>Agility: {zombie.agility}</p>
+              <button>Remove</button>
             </li>
           ))}
         </ul>
