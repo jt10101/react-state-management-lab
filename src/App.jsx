@@ -89,6 +89,8 @@ const App = () => {
   ]);
   return (
     <>
+      <h1>Zombie Fighters</h1>
+      <h2>Money: {money}</h2>
       <ul>
         {/* <li>
           <img src="https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/0c2d6b.png" />
