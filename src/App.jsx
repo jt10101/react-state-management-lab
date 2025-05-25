@@ -102,8 +102,7 @@ const App = () => {
       if (team.length < 1) {
         setEmptyTeam(false);
       }
-      // Spread operator to create new array becuase of .push function
-      // we are appending to the new array because it is different from the other displayed array
+      // we are appending to a new array because it is different from the other displayed array
       const newteam = [addZombie, ...team];
       setTeam(newteam);
       // console.log(newteam);
@@ -206,18 +205,20 @@ const App = () => {
       <div>
         <h2>Fighters</h2>
         <ul>
-          {zombieFighters.map((zombie, id) => (
-            <li key={id}>
-              <img src={zombie.img} />
-              <h3>{zombie.name}</h3>
-              <p>Price: {zombie.price}</p>
-              <p>Strength: {zombie.strength}</p>
-              <p>Agility: {zombie.agility}</p>
-              <button onClick={() => handleAddFighter({ ...zombie })}>
-                Add
-              </button>
-            </li>
-          ))}
+          {zombieFighters
+            .sort((a, b) => a.id - b.id)
+            .map((zombie, id) => (
+              <li key={id}>
+                <img src={zombie.img} />
+                <h3>{zombie.name}</h3>
+                <p>Price: {zombie.price}</p>
+                <p>Strength: {zombie.strength}</p>
+                <p>Agility: {zombie.agility}</p>
+                <button onClick={() => handleAddFighter({ ...zombie })}>
+                  Add
+                </button>
+              </li>
+            ))}
         </ul>
       </div>
     </>
